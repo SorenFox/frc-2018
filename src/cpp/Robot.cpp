@@ -13,6 +13,8 @@ public:
 
   Talon *left_motor;
   Talon *right_motor;
+  RobotDrive *my_robot;
+  Joystick *my_joy;
   int left_motor_port = 1, right_motor_port = 2;
 
     Robot() { }
@@ -21,13 +23,15 @@ public:
         left_motor = new Talon(left_motor_port);
         right_motor = new Talon(right_motor_port);
 
-        left_motor.Set(1)
-        right_motor.Set(2);
+        my_robot = new RobotDrive(left_motor, right_motor);
+
+        my_joy = new Joystick(3);
+
       }
 
     void DisabledInit() {
-        right_motor.Set(0);
-        left_motor.Set(0);
+        right_motor->Set(0);
+        left_motor->Set(0);
 
       }
     void AutonomousInit() { }
