@@ -20,27 +20,28 @@ public:
     Robot() { }
 
     void RobotInit() {
-        left_motor = new Talon(left_motor_port);
-        right_motor = new Talon(right_motor_port);
+      left_motor = new Talon(left_motor_port);
+      right_motor = new Talon(right_motor_port);
 
-        my_robot = new RobotDrive(left_motor, right_motor);
+      my_robot = new RobotDrive(left_motor, right_motor);
 
-        my_joy = new Joystick(3);
+      my_joy = new Joystick(3);
 
-      }
+    }
 
     void DisabledInit() {
-        right_motor->Set(0);
-        left_motor->Set(0);
+      my_robot->TankDrive(0.0,0.0);
 
-      }
+    }
     void AutonomousInit() { }
     void TeleopInit() { }
     void TestInit() { }
 
     void DisabledPeriodic() { }
     void AutonomousPeriodic() { }
-    void TeleopPeriodic() { }
+    void TeleopPeriodic() {
+      my_robot->ArcadeDrive(my_joy,true);
+    }
     void TestPeriodic() { }
 };
 
