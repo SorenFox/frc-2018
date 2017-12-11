@@ -14,7 +14,7 @@ public:
   Talon *left_motor;
   Talon *right_motor;
   RobotDrive *my_robot;
-  Joystick *my_joy;
+  XboxController *xbox;
   LiveWindow *lw;
   int left_motor_port = 1, right_motor_port = 2;
 
@@ -26,7 +26,7 @@ public:
 
       my_robot = new RobotDrive(left_motor, right_motor);
 
-      my_joy = new Joystick(3);
+      xbox = new XboxController(1);
 
       lw = LiveWindow::GetInstance();
 
@@ -43,9 +43,11 @@ public:
     void DisabledPeriodic() { }
     void AutonomousPeriodic() { }
     void TeleopPeriodic() {
-      my_robot->ArcadeDrive(my_joy,true);
+      my_robot->TankDrive(xbox->GetY(left),xbox->GetY(right),true);
     }
-    void TestPeriodic() { }
+    void TestPeriodic() {
+      lw->Run();
+    }
 };
 
 START_ROBOT_CLASS(Robot)
