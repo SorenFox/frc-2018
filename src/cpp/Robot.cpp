@@ -15,6 +15,7 @@ public:
   Talon *right_motor;
   RobotDrive *my_robot;
   Joystick *my_joy;
+  LiveWindow *lw;
   int left_motor_port = 1, right_motor_port = 2;
 
     Robot() { }
@@ -26,6 +27,8 @@ public:
       my_robot = new RobotDrive(left_motor, right_motor);
 
       my_joy = new Joystick(3);
+
+      lw = LiveWindow::GetInstance();
 
     }
 
