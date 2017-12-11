@@ -43,7 +43,7 @@ public:
     void DisabledPeriodic() { }
     void AutonomousPeriodic() { }
     void TeleopPeriodic() {
-      my_robot->TankDrive(xbox->GetY(leftStick),xbox->GetY(rightStick),true);
+      my_robot->TankDrive(xbox->GetY(kLeft),xbox->GetY(kRight),true);
     }
     void TestPeriodic() {
       lw->Run();
